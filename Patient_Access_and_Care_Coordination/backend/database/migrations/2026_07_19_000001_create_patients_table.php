@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('sex');
             $table->string('contact');
             $table->string('status')->default('Pending');
+            $table->timestamp('registered_at')->nullable();
             $table->timestamps();
         });
     }

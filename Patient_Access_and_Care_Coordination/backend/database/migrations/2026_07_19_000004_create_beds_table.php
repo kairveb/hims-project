@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId('ward_id')->constrained()->cascadeOnDelete();
             $table->string('code')->unique();
             $table->string('status')->default('available');
+            $table->foreignId('patient_id')->nullable()->constrained()->nullOnDelete();
             $table->string('patient_name')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();

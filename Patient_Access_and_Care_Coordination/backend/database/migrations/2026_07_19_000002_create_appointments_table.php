@@ -11,12 +11,13 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
+            $table->foreignId('patient_id')->nullable()->constrained()->nullOnDelete();
             $table->string('patient_name');
-            $table->string('patient_id')->nullable();
             $table->string('physician');
             $table->string('visit_type');
             $table->date('appt_date');
             $table->string('appt_time');
+            $table->string('status')->default('Scheduled');
             $table->timestamps();
         });
     }
