@@ -153,15 +153,20 @@
   });
 
   // Assign Bed (placeholder UI hook)
-  document.getElementById('erQueue').addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-assign-bed]');
-    if (!btn) return;
+  var queueHolder = document.getElementById('erQueue');
+  if (queueHolder) {
+    queueHolder.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-assign-bed]');
+      if (!btn) return;
 
-    var erId = btn.getAttribute('data-er-id') || '';
-    hisToast('Assign Bed clicked for ' + erId + '. Backend endpoint not implemented yet.', 'info');
-  });
+      var erId = btn.getAttribute('data-er-id') || '';
+      hisToast('Assign Bed clicked for ' + erId + '. Backend endpoint not implemented yet.', 'info');
+    });
+  }
 
-  document.getElementById('confirmQueueBtn').addEventListener('click', async function () {
+  var confirmBtn = document.getElementById('confirmQueueBtn');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', async function () {
     try {
       var level = parseInt(document.getElementById('aiResult').dataset.level, 10);
       var name = document.getElementById('tName').value || 'Patient';
@@ -209,5 +214,6 @@
     } catch (e) {
       hisToast(String(e && e.message ? e.message : e), 'danger');
     }
-  });
+    });
+  }
 })();

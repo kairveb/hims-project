@@ -32,9 +32,15 @@
       return null;
     }
 
-    const data = await res.json();
-    // Most endpoints return {data: ...}; pass through either way.
-    return data && data.data !== undefined ? data.data : data;
+    try {
+      const data = await res.json();
+      if (data && typeof data === 'object' && data.data !== undefined) {
+        return data.data;
+      }
+      return data;
+    } catch (e) {
+      return null;
+    }
   }
 
   function normalize(url) {
