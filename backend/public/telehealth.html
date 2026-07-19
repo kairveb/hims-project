@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telehealth · TOCS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="sidebar-backdrop d-none position-fixed top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,.4);z-index:1025;"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-box">MC</div>
+    <div>
+      <h5>MedCore HIS</h5>
+      <small>Care Coordination</small>
+    </div>
+  </div>
+
+  <nav class="sidebar-menu">
+    <a href="dashboard.html" class="menu-item"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+    <a href="registration.html" class="menu-item"><i class="bi bi-person-vcard-fill"></i> Registration</a>
+    <a href="scheduling.html" class="menu-item"><i class="bi bi-calendar2-week-fill"></i> Scheduling</a>
+    <a href="telehealth.html" class="menu-item active"><i class="bi bi-camera-video-fill"></i> Telehealth</a>
+    <a href="triage.html" class="menu-item"><i class="bi bi-activity"></i> ER Triage</a>
+    <a href="bed-management.html" class="menu-item"><i class="bi bi-hospital-fill"></i> Bed Management</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div>Signed in as <strong>—</strong><br>Front Desk · Shift —</div>
+  </div>
+</aside>
+
+<div class="main-content">
+  <header class="top-navbar">
+    <button class="nav-btn sidebar-toggle d-lg-none" aria-label="Toggle menu"><i class="bi bi-list"></i></button>
+    <div>
+
+      <div class="dashboard-header" style="margin-bottom:0;display:inline-block;vertical-align:middle;margin-left:14px;">
+        <div class="dashboard-subtitle" style="margin-bottom:6px;">TOCS</div>
+        <h1 class="dashboard-title" style="font-size:28px;margin-bottom:0;">Telehealth &amp; Outpatient Care</h1>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <button class="nav-btn" onclick="if(window.telehealthStart) window.telehealthStart()"><i class="bi bi-play-fill"></i></button>
+      <button class="nav-btn" onclick="if(window.telehealthStop) window.telehealthStop()"><i class="bi bi-stop-fill"></i></button>
+    </div>
+  </header>
+
+  <main class="page-content">
+
+    <div class="row g-3 dashboard-stats">
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon"><i class="bi bi-camera-video-fill"></i></div>
+            <span class="stat-badge active">Live</span>
+          </div>
+          <div class="stat-value">—</div>
+          <div class="stat-label">Active telehealth sessions</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon"><i class="bi bi-clock-history"></i></div>
+            <span class="stat-badge active">Queue</span>
+          </div>
+          <div class="stat-value">—</div>
+          <div class="stat-label">Patients in queue</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon"><i class="bi bi-clipboard2-check-fill"></i></div>
+            <span class="stat-badge success">Done</span>
+          </div>
+          <div class="stat-value">—</div>
+          <div class="stat-label">Completed consults</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon"><i class="bi bi-receipt"></i></div>
+            <span class="stat-badge active">Rx</span>
+          </div>
+          <div class="stat-value">—</div>
+          <div class="stat-label">E-prescriptions generated</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-table mt-4">
+      <div class="table-header">
+        <div>
+          <h4>Daily dashboard</h4>
+          <p>Session insights.</p>
+        </div>
+      </div>
+      <div class="table-responsive" style="max-height:none;overflow:visible;">
+        <div id="daily-container" style="height:520px;"></div>
+      </div>
+    </div>
+
+    <div class="dashboard-table mt-4">
+      <div class="table-header">
+        <div>
+          <h4>Session controls</h4>
+          <p></p>
+        </div>
+      </div>
+      <div>
+        <button class="btn-view-all mb-2" onclick="if(window.telehealthStart) window.telehealthStart()"><i class="bi bi-play-fill me-1"></i> Launch video call</button>
+        <button class="btn-view-all mb-2" style="background:#2563EB;" onclick="if(window.telehealthPrescribe) window.telehealthPrescribe()"><i class="bi bi-file-earmark-medical me-1"></i> Generate prescription</button>
+        <button class="btn-view-all" style="background:#0AA66A;" onclick="if(window.telehealthRemind) window.telehealthRemind()"><i class="bi bi-bell me-1"></i> Send reminder</button>
+        <p class="dashboard-subtitle" style="margin-top:12px;font-size:14px;">Backend integration required for session, prescriptions, and reminders.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/telehealth.js"></script>
+
+<script>
+  window.telehealthPrescribe = function () {
+    if (window.hisToast) hisToast('Backend required to generate prescription.', 'info');
+  };
+  window.telehealthRemind = function () {
+    if (window.hisToast) hisToast('Backend required to send reminder.', 'info');
+  };
+</script>
+
+
+</body>
+</html>
+
