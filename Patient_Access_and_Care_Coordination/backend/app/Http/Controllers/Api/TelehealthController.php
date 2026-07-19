@@ -11,7 +11,13 @@ class TelehealthController extends Controller
 {
     public function startRoom()
     {
-        $response = Http::withToken(config('services.daily.api_key'))
+        $apiKey = config('services.daily.api_key');
+
+        if (empty($apiKey)) {
+            return response()->json(['message' => 'Telehealth service is not configured.'], 503);
+        }
+
+        $response = Http::withToken($apiKey)
             ->post('https://api.daily.co/v1/rooms', [
                 'name' => 'consult-' . Str::random(8),
                 'properties' => [

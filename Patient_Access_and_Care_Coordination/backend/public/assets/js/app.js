@@ -72,10 +72,10 @@
         var current = window.location.pathname.split('/').pop() || 'dashboard.html';
         // If we're already on the destination page, its own script opens a modal
         // instead — don't navigate (that would reload the page and kill the modal).
-        if (action === 'new-patient' && current !== 'registration.html') {
-          window.location.href = 'registration.html';
-        } else if (action === 'new-appointment' && current !== 'scheduling.html') {
-          window.location.href = 'scheduling.html';
+        if (action === 'new-patient' && current !== 'registration') {
+          window.location.href = '/registration';
+        } else if (action === 'new-appointment' && current !== 'scheduling') {
+          window.location.href = '/scheduling';
         }
       });
     });

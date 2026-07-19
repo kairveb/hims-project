@@ -27,7 +27,7 @@
       if (teleEl) teleEl.textContent = '—';
       if (bedEl) bedEl.textContent = '—';
 
-      if (window.hisToast) hisToast(String(e && e.message ? e.message : e), 'error');
+      if (window.hisToast) window.hisToast(String(e && e.message ? e.message : e), 'error');
     }
   }
 
